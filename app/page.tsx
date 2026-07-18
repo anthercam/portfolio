@@ -132,7 +132,6 @@ export default function Home() {
                   
                   <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-2">
                     <div>
-                      <h3 className="text-xl font-bold text-slate-900">{exp.company}</h3>
                       {exp.role && <p className="text-md font-semibold text-orange-600 mt-0.5">{exp.role}</p>}
                     </div>
                     <div className="text-left md:text-right text-xs md:text-sm text-slate-500 font-medium">
