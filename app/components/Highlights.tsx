@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic';
 
 const Mermaid = dynamic(() => import('./Mermaid'), { ssr: false });
 
-// Clean Light-theme mapping for the Mermaid vector nodes
+// Using 8-digit hex codes (#RRGGBBAA) to safely pass alpha opacity without commas
 const pimFlowDiagram = `graph TD
   ERP[ERP System / Master Data] -->|Delta Payload| Inbound[Inbound Validation API]
   Inbound -->|Schema Match| PIM[PIM Core Model: Akeneo/inriver]
@@ -11,14 +11,15 @@ const pimFlowDiagram = `graph TD
   Listeners -->|Valid Data| Channel[Outbound Channels: Shopify/Marketplaces]
   Listeners -->|Missing Attributes| ErrorLog[Error Logs & Notifications]
 
-  style ERP fill:#f1f5f9,stroke:#cbd5e1,stroke-width:1px,color:#334155
-  style Inbound fill:#f1f5f9,stroke:#cbd5e1,stroke-width:1px,color:#334155
-  style PIM fill:#dbeafe,stroke:#3b82f6,stroke-width:1.5px,color:#1e3a8a
-  style Listeners fill:#ffedd5,stroke:#f97316,stroke-width:1.5px,color:#7c2d12
-  style Channel fill:#f1f5f9,stroke:#cbd5e1,stroke-width:1px,color:#334155
-  style ErrorLog fill:#f1f5f9,stroke:#cbd5e1,stroke-width:1px,color:#334155
+  %% Clean hex-alpha formatting to satisfy the Mermaid string parser
+  style ERP fill:#ffffff4d,stroke:#ffffffcc,stroke-width:1.5px,color:#334155
+  style Inbound fill:#ffffff4d,stroke:#ffffffcc,stroke-width:1.5px,color:#334155
+  style PIM fill:#fbbf240f,stroke:#f59e0b80,stroke-width:2px,color:#7c2d12,font-weight:bold
+  style Listeners fill:#f973160d,stroke:#f9731680,stroke-width:2px,color:#7c2d12,font-weight:bold
+  style Channel fill:#ffffff4d,stroke:#ffffffcc,stroke-width:1.5px,color:#334155
+  style ErrorLog fill:#ffffff4d,stroke:#ffffffcc,stroke-width:1.5px,color:#334155
   
-  linkStyle default stroke:#94a3b8,stroke-width:1px,color:#475569`;
+  linkStyle default stroke:#f59e0b59,stroke-width:1.5px,color:#475569`;
 
 const projects = [
   {
@@ -43,14 +44,13 @@ export default function Highlights() {
       </h2>
       <div className="space-y-12">
         {projects.map((p, idx) => (
-          <div key={idx} className="group relative flex flex-col items-start p-6 bg-white/40 backdrop-blur-md border border-white/80 rounded-2xl shadow-[0_20px_40px_rgba(15,23,42,0.04),inset_0_1px_0_rgba(255,255,255,0.6)] transition-all duration-300 hover:border-slate-300 hover:bg-white/60 hover:scale-[1.01]">
+          <div key={idx} className="group relative flex flex-col items-start p-6 bg-white/[0.12] backdrop-blur-3xl backdrop-saturate-[1.8] border border-white/60 rounded-2xl shadow-[0_20px_40px_rgba(15,23,42,0.04),inset_0_1px_2px_rgba(255,255,255,0.6)] transition-all duration-300 hover:border-slate-300 hover:bg-white/60 hover:scale-[1.01]">
             
             <h3 className="text-xl font-semibold text-slate-900 group-hover:text-orange-600 transition-colors duration-200">
               {p.title}
             </h3>
             <p className="mt-2 text-slate-600 leading-relaxed text-sm md:text-base">{p.description}</p>
             
-            {/* Inset Light Glass Impact Box with soft orange tint */}
             <div className="mt-4 bg-amber-50/40 border border-orange-100 p-4 rounded-xl w-full shadow-[inset_0_1px_2px_rgba(0,0,0,0.01)]">
               <span className="text-xs font-bold uppercase tracking-wider text-orange-600 block mb-1">Key Impact:</span>
               <p className="text-sm text-slate-700 leading-relaxed">{p.impact}</p>
@@ -72,7 +72,25 @@ export default function Highlights() {
         <p className="text-sm text-slate-500 mb-6">
           Visual orchestration topology highlighting operational validation layers and boundary gate logic:
         </p>
-        <Mermaid chart={pimFlowDiagram} />
+        
+        <div className="p-6 bg-white/[0.08] backdrop-blur-xl border border-white/40 rounded-2xl shadow-[0_20px_40px_rgba(15,23,42,0.02)] relative overflow-hidden group">
+          <style jsx global>{`
+            .mermaid svg .node rect, 
+            .mermaid svg .node polygon,
+            .mermaid svg .node circle,
+            .mermaid svg .node path {
+              filter: drop-shadow(0 4px 6px rgba(15, 23, 42, 0.03)) 
+                      drop-shadow(0 1px 2px rgba(15, 23, 42, 0.02));
+              transition: all 0.3s ease;
+            }
+            .mermaid svg .node:hover rect,
+            .mermaid svg .node:hover polygon {
+              fill: rgba(255, 255, 255, 0.6) !important;
+              stroke: rgba(245, 158, 11, 0.8) !important;
+            }
+          `}</style>
+          <Mermaid chart={pimFlowDiagram} />
+        </div>
       </div>
     </section>
   );
