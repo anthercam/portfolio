@@ -1,3 +1,19 @@
+'use client';
+import dynamic from 'next/dynamic';
+// Dynamically import the Mermaid component with SSR turned off
+const Mermaid = dynamic(() => import('./Mermaid'), { ssr: false });
+
+// Define the diagram syntax using Mermaid's syntax rules
+const pimFlowDiagram = `graph TD
+  ERP[ERP System / Master Data] -->|Delta Payload| Inbound[Inbound Validation API]
+  Inbound -->|Schema Match| PIM[PIM Core Model: Akeneo/inriver]
+  PIM -->|Completeness Evaluated| Listeners{Completeness Listeners}
+  Listeners -->|Valid Data| Channel[Outbound Channels: Shopify/Marketplaces]
+  Listeners -->|Missing Attributes| ErrorLog[Error Logs & Notifications]
+
+  style PIM fill:#dbeafe,stroke:#3b82f6,stroke-width:2px
+  style Listeners fill:#fef3c7,stroke:#d97706,stroke-width:1px`;
+
 // components/Highlights.tsx
 const projects = [
   {
@@ -13,6 +29,8 @@ const projects = [
     tags: ["Event-Driven Architecture", "Performance Tuning", "Backend Logic", "inriver"]
   }
 ];
+
+
 
 export default function Highlights() {
   return (
@@ -36,9 +54,14 @@ export default function Highlights() {
                 </span>
               ))}
             </div>
+
+           
           </div>
         ))}
       </div>
+
+       {/* Visual Diagram injection */}
+       <Mermaid chart={pimFlowDiagram} />
     </section>
   );
 }

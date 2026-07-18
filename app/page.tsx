@@ -18,8 +18,8 @@ export default function Home() {
             Looking for architectural design, PIM integrations, or data modeling consultation?
           </p>
           <div className="flex justify-center gap-6 text-sm font-medium">
-            <a href="mailto:your.email@example.com" className="text-blue-600 hover:underline">Email</a>
-            <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">LinkedIn</a>
+            <a href="mailto:anthercam21@gmail.com" className="text-blue-600 hover:underline">Email</a>
+            <a href="https://www.linkedin.com/in/antony-requintina/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">LinkedIn</a>
           </div>
         </section>
       </div>

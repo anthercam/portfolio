@@ -6,7 +6,7 @@ export default function Hero() {
         Antony Camacho Requintina
       </h1>
       <p className="text-xl font-medium text-blue-600 mt-2">
-        Solution Architect — PIM & Data Integration Specialist
+        Solution Architect | Software Engineer | PIM & Data Integration Specialist
       </p>
       <p className="text-slate-600 dark:text-slate-400 mt-4 max-w-2xl text-lg leading-relaxed">
         I design and scale data models, enterprise Product Information Management (PIM) systems, 
