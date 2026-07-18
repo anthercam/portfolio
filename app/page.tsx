@@ -11,49 +11,50 @@ export default function Home() {
   const experience = [
     {
       role: "Solutions Architect",
+      type: "Full-time",
       duration: "Nov 2020 - Present",
-      location: "Cebu, Central Visayas, Philippines",
+      location: "Cebu, Philippines",
       skills: ["Requirements Analysis", "Software Integration", "Solution Architecture", "PIM Management"],
       details: "Leading architecture design for enterprise-scale Product Information Management (PIM) platforms, streamlining multi-channel integrations and aligning complex data structures with business initiatives."
     },
     {
-      role: "Software Engineer",
-      type: "Full-time (3 yrs 3 mos)",
-      location: "Cebu, Central Visayas, Philippines",
-      roles: [
-        {
-          title: "Mid-level Software Engineer",
-          duration: "Oct 2018 - Oct 2020 (2 yrs 1 mo)",
-          skills: ["Solution Architecture", "Backend Logic"]
-        },
-        {
-          title: "Junior Software Engineer",
-          duration: "Aug 2017 - Oct 2018 (1 yr 3 mos)",
-          location: "Philippines"
-        }
-      ]
+      role: "Full-Stack Engineer",
+      type: "Part-time",
+      duration: "Jan 2024 - Oct 2025",
+      location: "Remote | Colorado, US",
+      skills: ["Requirements Analysis", "Software Integration", "Solution Architecture", "PIM Management"],
+      details: "",
     },
     {
-      role: "Software Engineeer",
+      role: "Software Engineer | PIM & Data Integration Specialist",
+      type: "Full-time (3 yrs 3 mos)",
+      location: "Cebu, Philippines",
+      details:"",
+    },
+    {
+      role: "Software Engineer",
       type: "Full-time (2 yrs 3 mos)",
-      location: "Cebu, Central Visayas, Philippines",
-      roles: [
-        {
-          title: "Associate Technical Specialist I",
-          duration: "Jul 2017 - Aug 2017 (2 mos)",
-          location: "7th Floor, Pioneer House Cebu Cardinal Rosales Ave., Cebu City"
-        },
-        {
-          title: "Technical Specialist",
-          duration: "Jun 2015 - Jul 2017 (2 yrs 2 mos)"
-        }
-      ]
+      location: "Cebu, Philippines",
+      details:"",
     }
   ];
 
+  const personalInfo = {
+    name: "Antony Camacho Requintina",
+    title: "Solution Architect",
+    location: "Cebu City, Philippines",
+    languages: ["English", "Filipino"],
+    focus: [
+      "Enterprise PIM Architecture",
+      "Data Lifecycle Modeling",
+      "Event-Driven Integration Pipelines",
+      "Performance Optimization"
+    ]
+  };
+
   return (
     <main className="min-h-screen bg-[#fcfdf2] text-slate-800 font-sans antialiased relative overflow-x-hidden selection:bg-orange-500 selection:text-white">
-      {/* Intense background gradient color engines to give the glass properties maximum distortion data */}
+      {/* Intense background gradient color engines */}
       <div className="absolute top-[-5%] left-[-5%] w-[55vw] h-[55vw] bg-amber-200/60 rounded-full blur-[100px] pointer-events-none animate-pulse duration-[8s]" />
       <div className="absolute top-[20%] right-[-10%] w-[60vw] h-[60vw] bg-orange-300/40 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-[-5%] left-[5%] w-[45vw] h-[45vw] bg-rose-200/50 rounded-full blur-[90px] pointer-events-none" />
@@ -107,7 +108,7 @@ export default function Home() {
         )}
 
         {activeTab === 'resume' && (
-          <div className="animate-in fade-in duration-300 space-y-8 max-w-3xl mx-auto">
+          <div className="animate-in fade-in duration-300 space-y-8 max-w-4xl mx-auto">
             {/* Callout Header Card */}
             <div className="py-10 px-8 bg-white/[0.12] backdrop-blur-3xl backdrop-saturate-[1.8] border border-white/60 rounded-[32px] shadow-[0_30px_60px_rgba(15,23,42,0.06),inset_0_1px_3px_rgba(255,255,255,0.8)] text-center relative overflow-hidden">
               <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-white/80 to-transparent" />
@@ -124,47 +125,90 @@ export default function Home() {
               </a>
             </div>
 
-            {/* Timeline Experience Track */}
-            <div className="space-y-6">
-              {experience.map((exp, idx) => (
-                <div key={idx} className="p-6 bg-white/[0.12] backdrop-blur-3xl backdrop-saturate-[1.8] border border-white/60 rounded-2xl shadow-[0_20px_40px_rgba(15,23,42,0.04),inset_0_1px_2px_rgba(255,255,255,0.6)] relative overflow-hidden transition hover:scale-[1.005] duration-200">
+            {/* Two-Column Work History and Personal Meta Layout */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+              
+              {/* Left Column: Work Experience Timeline (Spans 2 blocks on broad viewports) */}
+              <div className="md:col-span-2 space-y-6">
+                {experience.map((exp, idx) => (
+                  <div key={idx} className="p-6 bg-white/[0.12] backdrop-blur-3xl backdrop-saturate-[1.8] border border-white/60 rounded-2xl shadow-[0_20px_40px_rgba(15,23,42,0.04),inset_0_1px_2px_rgba(255,255,255,0.6)] relative overflow-hidden transition hover:scale-[1.005] duration-200">
+                    <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent" />
+                    
+                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
+                      <div>
+                        <h3 className="text-lg font-bold text-slate-900">{exp.company}</h3>
+                        {exp.role && <p className="text-sm font-semibold text-orange-600 mt-0.5">{exp.role}</p>}
+                      </div>
+                      <div className="text-left sm:text-right text-xs text-slate-500 font-medium">
+                        <p className="text-slate-700 font-semibold">{exp.duration || exp.type}</p>
+                        {exp.location && <p className="mt-0.5">{exp.location}</p>}
+                      </div>
+                    </div>
+
+                    {exp.roles && (
+                      <div className="mt-4 border-l-2 border-slate-200 pl-4 space-y-4 ml-1">
+                        {exp.roles.map((role, rIdx) => (
+                          <div key={rIdx} className="relative before:absolute before:w-2 before:h-2 before:bg-orange-500 before:rounded-full before:-left-[21px] before:top-[6px]">
+                            <h4 className="font-bold text-slate-800 text-sm">{role.title}</h4>
+                            <p className="text-xs font-semibold text-slate-500">{role.duration}</p>
+                            {role.location && <p className="text-xs text-slate-400 mt-0.5">{role.location}</p>}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+
+                    {exp.details && <p className="mt-3 text-sm text-slate-600 leading-relaxed">{exp.details}</p>}
+
+                    {exp.skills && (
+                      <div className="mt-4 flex flex-wrap gap-1.5 border-t border-slate-100 pt-3">
+                        {exp.skills.map((skill, sIdx) => (
+                          <span key={sIdx} className="px-2.5 py-0.5 bg-white/60 border border-slate-200/80 text-slate-600 rounded-md text-xs font-medium shadow-[0_1px_2px_rgba(0,0,0,0.01)]">
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+
+              {/* Right Column: Personal Information Sticky Side Pane */}
+              <div className="space-y-6 md:sticky md:top-24">
+                <div className="p-6 bg-white/[0.12] backdrop-blur-3xl backdrop-saturate-[1.8] border border-white/60 rounded-2xl shadow-[0_20px_40px_rgba(15,23,42,0.04),inset_0_1px_2px_rgba(255,255,255,0.6)] relative overflow-hidden">
                   <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent" />
                   
-                  <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-2">
+                  <h3 className="text-md font-bold text-slate-900 uppercase tracking-wider mb-4 border-b border-slate-200/50 pb-2">
+                    Personal Profile
+                  </h3>
+                  
+                  <div className="space-y-4 text-sm">
                     <div>
-                      {exp.role && <p className="text-md font-semibold text-orange-600 mt-0.5">{exp.role}</p>}
+                      <span className="text-xs font-semibold text-slate-400 block uppercase">Full Name</span>
+                      <p className="text-slate-800 font-medium">{personalInfo.name}</p>
                     </div>
-                    <div className="text-left md:text-right text-xs md:text-sm text-slate-500 font-medium">
-                      <p className="text-slate-700 font-semibold">{exp.duration || exp.type}</p>
-                      {exp.location && <p className="mt-0.5">{exp.location}</p>}
+                    <div>
+                      <span className="text-xs font-semibold text-slate-400 block uppercase">Base Location</span>
+                      <p className="text-slate-800 font-medium">{personalInfo.location}</p>
+                    </div>
+                    <div>
+                      <span className="text-xs font-semibold text-slate-400 block uppercase">Languages</span>
+                      <p className="text-slate-800 font-medium">{personalInfo.languages.join(', ')}</p>
+                    </div>
+                    <div>
+                      <span className="text-xs font-semibold text-slate-400 block uppercase mb-1.5">Core Focus Areas</span>
+                      <div className="flex flex-col gap-1.5">
+                        {personalInfo.focus.map((item, fIdx) => (
+                          <div key={fIdx} className="flex items-start gap-2 text-xs text-slate-600 leading-tight">
+                            <span className="text-orange-500 mt-0.5">•</span>
+                            <span>{item}</span>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
-
-                  {exp.roles && (
-                    <div className="mt-4 border-l-2 border-slate-200 pl-4 space-y-4 ml-1">
-                      {exp.roles.map((role, rIdx) => (
-                        <div key={rIdx} className="relative before:absolute before:w-2 before:h-2 before:bg-orange-500 before:rounded-full before:-left-[21px] before:top-[6px]">
-                          <h4 className="font-bold text-slate-800 text-base">{role.title}</h4>
-                          <p className="text-xs font-semibold text-slate-500">{role.duration}</p>
-                          {role.location && <p className="text-xs text-slate-400 mt-0.5">{role.location}</p>}
-                        </div>
-                      ))}
-                    </div>
-                  )}
-
-                  {exp.details && <p className="mt-3 text-sm text-slate-600 leading-relaxed">{exp.details}</p>}
-
-                  {exp.skills && (
-                    <div className="mt-4 flex flex-wrap gap-1.5 border-t border-slate-100 pt-3">
-                      {exp.skills.map((skill, sIdx) => (
-                        <span key={sIdx} className="px-2.5 py-0.5 bg-white/60 border border-slate-200/80 text-slate-600 rounded-md text-xs font-medium shadow-[0_1px_2px_rgba(0,0,0,0.01)]">
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
-                  )}
                 </div>
-              ))}
+              </div>
+
             </div>
           </div>
         )}
@@ -173,20 +217,20 @@ export default function Home() {
           <div className="animate-in fade-in duration-300 py-16 px-8 bg-white/[0.12] backdrop-blur-3xl backdrop-saturate-[1.8] border border-white/60 rounded-[32px] shadow-[0_30px_60px_rgba(15,23,42,0.06),inset_0_1px_3px_rgba(255,255,255,0.8),inset_0_-2px_4px_rgba(0,0,0,0.01)] text-center max-w-2xl mx-auto relative overflow-hidden">
             <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-white/80 to-transparent" />
             
-            <h2 className="text-4xl font-extrabold tracking-tight text-slate-900 mb-4">Let's Build Something Together</h2>
+            <h2 className="text-4xl font-extrabold tracking-tight text-slate-900 mb-4">Let&apos;s Build Something Together</h2>
             <p className="text-slate-600 mb-10 max-w-lg mx-auto text-sm md:text-base leading-relaxed">
               Available for specialized architectural consulting, ecosystem data mapping design, and system modernization initiatives.
             </p>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <a 
-                href="mailto:your.email@example.com" 
+                href="mailto:anthercam21@gmail.com" 
                 className="p-4 bg-white/40 backdrop-blur-md border border-white/80 rounded-xl shadow-[0_4px_12px_rgba(15,23,42,0.02),inset_0_1px_0_rgba(255,255,255,0.5)] hover:border-orange-200 hover:bg-white transition text-slate-700 font-medium text-sm"
               >
                 Email Me
               </a>
               <a 
-                href="https://linkedin.com/in/yourprofile" 
+                href="https://www.linkedin.com/in/antony-requintina/" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="p-4 bg-white/40 backdrop-blur-md border border-white/80 rounded-xl shadow-[0_4px_12px_rgba(15,23,42,0.02),inset_0_1px_0_rgba(255,255,255,0.5)] hover:border-orange-200 hover:bg-white transition text-slate-700 font-medium text-sm"

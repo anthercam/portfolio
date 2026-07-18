@@ -12,7 +12,7 @@ export default function Hero() {
         I design and scale data models, enterprise Product Information Management (PIM) systems, 
         and high-performance integration pipelines that bridge complex backend logic with business realities.
       </p>
-      <div className="mt-8 flex gap-4">
+      {/* <div className="mt-8 flex gap-4">
         <a 
           href="#contact" 
           className="px-5 py-2.5 bg-gradient-to-b from-amber-400 to-orange-500 text-white font-medium rounded-xl shadow-[0_10px_20px_rgba(245,158,11,0.25),inset_0_1px_0_rgba(255,255,255,0.3)] hover:from-amber-500 hover:to-orange-600 transition scale-100 hover:scale-[1.02] active:scale-[0.98] duration-200"
@@ -26,7 +26,7 @@ export default function Hero() {
         >
           Download CV
         </a>
-      </div>
+      </div> */}
     </section>
   );
 }
