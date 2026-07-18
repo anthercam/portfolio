@@ -65,8 +65,8 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-[#fcfdf2] text-slate-800 font-sans antialiased relative overflow-x-hidden selection:bg-orange-500 selection:text-white">
-      {/* Intense background gradient color engines */}
+      <main className="h-full bg-[#fcfdf2] text-slate-800 font-sans antialiased relative overflow-x-hidden overflow-y-visible selection:bg-orange-500 selection:text-white">
+    {/* Intense background gradient color engines */}
       <div className="absolute top-[-5%] left-[-5%] w-[55vw] h-[55vw] bg-amber-200/60 rounded-full blur-[100px] pointer-events-none animate-pulse duration-[8s]" />
       <div className="absolute top-[20%] right-[-10%] w-[60vw] h-[60vw] bg-orange-300/40 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-[-5%] left-[5%] w-[45vw] h-[45vw] bg-rose-200/50 rounded-full blur-[90px] pointer-events-none" />
