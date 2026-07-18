@@ -136,7 +136,6 @@ export default function Home() {
                     
                     <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
                       <div>
-                        <h3 className="text-lg font-bold text-slate-900">{exp.company}</h3>
                         {exp.role && <p className="text-sm font-semibold text-orange-600 mt-0.5">{exp.role}</p>}
                       </div>
                       <div className="text-left sm:text-right text-xs text-slate-500 font-medium">
@@ -144,18 +143,6 @@ export default function Home() {
                         {exp.location && <p className="mt-0.5">{exp.location}</p>}
                       </div>
                     </div>
-
-                    {exp.roles && (
-                      <div className="mt-4 border-l-2 border-slate-200 pl-4 space-y-4 ml-1">
-                        {exp.roles.map((role, rIdx) => (
-                          <div key={rIdx} className="relative before:absolute before:w-2 before:h-2 before:bg-orange-500 before:rounded-full before:-left-[21px] before:top-[6px]">
-                            <h4 className="font-bold text-slate-800 text-sm">{role.title}</h4>
-                            <p className="text-xs font-semibold text-slate-500">{role.duration}</p>
-                            {role.location && <p className="text-xs text-slate-400 mt-0.5">{role.location}</p>}
-                          </div>
-                        ))}
-                      </div>
-                    )}
 
                     {exp.details && <p className="mt-3 text-sm text-slate-600 leading-relaxed">{exp.details}</p>}
 
