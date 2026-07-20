@@ -1,7 +1,7 @@
 // components/TechStack.tsx
 export default function TechStack() {
   return (
-    <section className="py-16 max-w-4xl mx-auto px-4 border-t border-slate-200/60">
+    <section className="py-16 max-full mx-auto px-4 border-t border-slate-200/60">
       <h2 className="text-2xl font-bold text-slate-900 mb-8">
         Technical Arsenal
       </h2>

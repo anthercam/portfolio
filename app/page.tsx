@@ -10,6 +10,7 @@ export default function Home() {
 
   const experience = [
     {
+      company: "Avensia Philippines Inc.",
       role: "Solutions Architect",
       type: "Full-time",
       duration: "Nov 2020 - Present",
@@ -18,7 +19,8 @@ export default function Home() {
       details: "Leading architecture design for enterprise-scale Product Information Management (PIM) platforms, streamlining multi-channel integrations and aligning complex data structures with business initiatives."
     },
     {
-      role: "Full-Stack Engineer",
+      company: "Oppy",
+      role: "Full-Stack Engineer (Contract)",
       type: "Part-time",
       duration: "Jan 2024 - Oct 2025",
       location: "Remote | Colorado, US",
@@ -26,15 +28,19 @@ export default function Home() {
       details: "Built scalable back‑office platforms with PHP (Laravel) and Node.js/React.js, improving efficiency and reducing process time by 25%. Collaborated across teams to deliver secure APIs and enforce best practices in testing and integration for long‑term reliability."
     },
     {
-      role: "Software Engineer | PIM & Data Integration Specialist",
-      type: "Full-time (3 yrs 3 mos)",
+      company: "Inspire Team Philippines",
+      role: "Software Engineer | PIM Integration Specialist",
+      type: "Full-time",
+      duration: "Aug 2017 - Nov 2020",
       location: "Cebu, Philippines",
       skills: ["C# / .NET", "RESTful APIs", "Software Integration", "Data Lifecycle Modeling", "EAI Frameworks"],
       details: "Developed backend integrations across PIM, CMS, and ERP systems with C# and REST APIs, streamlining data flow and boosting accuracy. Enhanced efficiency through scalable pipelines and Agile collaboration, accelerating delivery speed and quality."
     },
     {
+      company: "Alliance Software Inc.",
       role: "Software Engineer",
-      type: "Full-time (2 yrs 3 mos)",
+      type: "Full-time",
+      duration: "Jun 2015 - Aug 2017",
       location: "Cebu, Philippines",
       skills: ["ASP.NET / Angular", "Software Architecture", "Relational Databases", "Design Patterns", "Performance Tuning"],
       details: "Built high‑availability enterprise applications with ASP.NET and Angular, improving backend performance and reliability. Maintained mission‑critical workflows and optimized APIs with Lotus Notes and .NET, boosting efficiency and supporting seamless business operations."
@@ -110,9 +116,9 @@ export default function Home() {
       </header>
 
       {/* Main Display Container */}
-      <div className="max-w-4xl mx-auto px-4 pt-10 pb-16 relative z-10 w-full">
+      <div className="max-w-5xl mx-auto px-6 pt-8 pb-16 relative z-10 w-full">
         {activeTab === 'highlights' && (
-          <div className="space-y-12 animate-in fade-in duration-300">
+          <div className="space-y-6 animate-in fade-in duration-300">
             <Hero />
             <TechStack />
             <Highlights />
@@ -120,9 +126,9 @@ export default function Home() {
         )}
 
         {activeTab === 'resume' && (
-          <div className="animate-in fade-in duration-300 space-y-8 max-w-4xl mx-auto w-full">
+          <div className="animate-in fade-in duration-300 space-y-8 max-full mx-auto w-full">
             {/* Header Card */}
-            <div className="py-10 px-8 bg-white/[0.12] backdrop-blur-3xl backdrop-saturate-[1.8] border border-white/60 rounded-[32px] shadow-[0_30px_60px_rgba(15,23,42,0.06),inset_0_1px_3px_rgba(255,255,255,0.8)] text-center relative overflow-hidden">
+            <div className="py-6 px-8 bg-white/[0.12] backdrop-blur-3xl backdrop-saturate-[1.8] border border-white/60 rounded-[32px] shadow-[0_30px_60px_rgba(15,23,42,0.06),inset_0_1px_3px_rgba(255,255,255,0.8)] text-center relative overflow-hidden">
               <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-white/80 to-transparent" />
               <h2 className="text-3xl font-bold tracking-tight text-slate-900 mb-3">Professional History</h2>
               <p className="text-slate-600 max-w-md mx-auto mb-6 text-sm md:text-base leading-relaxed">
@@ -141,18 +147,23 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
               
               {/* Timeline */}
-              <div className="md:col-span-2 space-y-6">
+              <div className="md:col-span-2 space-y-6 order-1 md:order-2">
                 {experience.map((exp, idx) => (
                   <div key={idx} className="p-6 bg-white/[0.12] backdrop-blur-3xl backdrop-saturate-[1.8] border border-white/60 rounded-2xl shadow-[0_20px_40px_rgba(15,23,42,0.04),inset_0_1px_2px_rgba(255,255,255,0.6)] relative overflow-hidden transition hover:scale-[1.005] duration-200">
                     <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent" />
                     
                     <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
                       <div>
+                        {exp.company && <h3 className="text-lg font-bold text-slate-900 leading-snug">{exp.company}</h3>}
                         {exp.role && <p className="text-sm font-semibold text-orange-600 mt-0.5">{exp.role}</p>}
                       </div>
                       <div className="text-left sm:text-right text-xs text-slate-500 font-medium">
-                        <p className="text-slate-700 font-semibold">{exp.duration || exp.type}</p>
-                        {exp.location && <p className="mt-0.5">{exp.location}</p>}
+                        <p className="text-slate-700 font-semibold">{exp.duration}</p>
+                        <div className="flex sm:justify-end items-center gap-1.5 mt-0.5">
+                          {exp.type && <span className="text-slate-400 font-normal">{exp.type}</span>}
+                          {exp.type && exp.location && <span className="text-slate-300">•</span>}
+                          {exp.location && <span>{exp.location}</span>}
+                        </div>
                       </div>
                     </div>
 
@@ -172,7 +183,7 @@ export default function Home() {
               </div>
 
               {/* Sidebar Pane */}
-              <div className="space-y-6 md:sticky md:top-24">
+              <div className="space-y-6 md:sticky md:top-24 order-2 md:order-1" >
                 <div className="p-5 bg-white/[0.12] backdrop-blur-3xl backdrop-saturate-[1.8] border border-white/60 rounded-2xl shadow-[0_20px_40px_rgba(15,23,42,0.04),inset_0_1px_2px_rgba(255,255,255,0.6)] relative overflow-hidden flex flex-col gap-4">
                   <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent" />
                   
@@ -262,8 +273,8 @@ export default function Home() {
           </div>
         )}
 
-        {activeTab === 'contact' && (
-          <div className="animate-in fade-in duration-300 py-16 px-8 bg-white/[0.12] backdrop-blur-3xl backdrop-saturate-[1.8] border border-white/60 rounded-[32px] shadow-[0_30px_60px_rgba(15,23,42,0.06),inset_0_1px_3px_rgba(255,255,255,0.8),inset_0_-2px_4px_rgba(0,0,0,0.01)] text-center max-w-2xl mx-auto relative overflow-hidden w-full">
+       {activeTab === 'contact' && (
+          <div className="animate-in fade-in duration-300 py-16 px-8 bg-white/[0.12] backdrop-blur-3xl backdrop-saturate-[1.8] border border-white/60 rounded-[32px] shadow-[0_30px_60px_rgba(15,23,42,0.06),inset_0_1px_3px_rgba(255,255,255,0.8),inset_0_-2px_4px_rgba(0,0,0,0.01)] text-center w-full mx-auto relative overflow-hidden">
             <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-white/80 to-transparent" />
             
             <h2 className="text-4xl font-extrabold tracking-tight text-slate-900 mb-4">Let&apos;s Build Something Together</h2>
@@ -271,7 +282,7 @@ export default function Home() {
               Available for specialized architectural consulting, ecosystem data mapping design, and system modernization initiatives.
             </p>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl mx-auto">
               <a 
                 href="mailto:anthercam21@gmail.com" 
                 className="p-4 bg-white/40 backdrop-blur-md border border-white/80 rounded-xl shadow-[0_4px_12px_rgba(15,23,42,0.02),inset_0_1px_0_rgba(255,255,255,0.5)] hover:border-orange-200 hover:bg-white transition text-slate-700 font-medium text-sm"
